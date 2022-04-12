@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/quote" method="post">
+        <div class="form-group">
+            <input autocomplete="on" autofocus class="form-control" onkeyup="sss()" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <button class="btn btn-primary" disabled type="submit">Get Quote</button>
+    </form>
+    <p></p>
+    {% if toGet %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Company Name</th>
+                <th scope="col">Stock Price</th>
+                <th scope="col">Stock Symbol</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{toGet["name"]}}</td>
+                <td>${{toGet["price"]}}</td>
+                <td>{{toGet["symbol"]}}</td>
+            </tr>
+            </tbody>
+        </table>
+    {% elif toGet == None %}
+        INVALID Symbol
+    {% elif error %}
+    <div class="alert alert-warning" role="alert">
+        {{error}}
+    </div>
+    {% endif %}
+{% endblock %}

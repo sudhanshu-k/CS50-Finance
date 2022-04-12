@@ -1,0 +1,31 @@
+CREATE TABLE contacts (
+	id INTEGER NOT NULL PRIMARY KEY,
+	username TEXT NOT NULL,
+	hash TEXT NOT NULL,
+	cash NUMERIC NOT NULL DEFAULT 10000
+);
+
+
+
+
+-- SQLite
+ALTER TABLE STOCKS ADD COLUMN isd INTEGER;
+
+
+-- SQLite
+CREATE TABLE stock(
+    id INTEGER PRIMARY KEY NOT NULL,
+    username TEXT NOT NULL,
+    symbol TEXT NOT NULL,
+    price REAL NOT NULL,
+    units INTEGER NOT NULL,
+);
+-- SQLite
+INSERT INTO stock (id, symbol, units, username)
+VALUES (0, 'NFLX', 7, 'as');
+
+
+
+-- SQLite
+DROP TABLE
+users

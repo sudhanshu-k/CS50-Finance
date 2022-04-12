@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" onkeyup="sss()" onclick="sss()" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <button class="btn btn-primary" disabled type="submit">Get Quote</button>
+    </form>
+    <p></p>
+    {% if toGet %}
+    <script>
+        document.getElementsByClassName("form-control").symbol.value = '{{symbol}}';
+    </script>
+    <p>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Company Name</th>
+                <th scope="col">Stock Price</th>
+                <th scope="col">Stock Symbol</th>
+                <th scope="col">Cash</th>
+                <th scope="col">Buy</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{toGet["name"]}}</td>
+                <td>${{toGet["price"]}}</td>
+                <td>{{toGet["symbol"]}}</td>
+                <td>${{cash}}</td>
+                <td>
+                    <form action="/buy" method="post">
+                        <div class="form-group">
+                            <input autocomplete="off" autofocus class="form-control" onkeyup="sss()" onclick="sss()" name="quantity" placeholder="Quantity" type="number">
+                        </div>
+                        <button class="btn btn-primary" disabled type="submit">Buy</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </p>
+    {% elif toGet == None %}
+        INVALID Symbol
+    {% elif error %}
+        <div class="alert alert-warning" role="alert">
+            {{error}}
+        </div>
+    {% endif %}
+
+{% endblock %}

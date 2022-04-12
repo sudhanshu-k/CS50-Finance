@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+<table class="table table-striped">
+    <td>
+    <form action="/sell" method="post">
+        <div class="form-group">
+            <label>Owned Stocks</label>
+            <select class="form-control" name="stocks">
+                <option>
+                    jnjn
+                </option>
+              <script>
+                var stocks = JSON.parse('{{stocks|safe}}')
+                function fill(){
+                    var body = document.getElementsByName("stocks")[0];
+                    for (var i = 0; i < stocks.length; i++) {
+                        var option = document.createElement("option");
+                        var optionText = document.createTextNode(stocks[i]["symbol"]);
+                        option.appendChild(optionText);
+                        body.appendChild(option);
+                    }
+                }
+                fill();
+              </script>
+            </select>
+        </div>
+            <button type="submit" class="btn btn-primary">List</button>
+    </td>
+</table>
+
+{% if stock %}
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Stock Symbol</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Initial Stock Price</th>
+        <th scope="col">Current Stock Price</th>
+        <th scope="col">Sell</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{toGet["name"]}}</td>
+        <td>{{unit}}</td>
+        <td></td>
+        <td>${{toGet["price"]}}</td>
+        <td>
+        <form action="/sell" method="post">
+            <div class="form-group">
+                <input class="form-control" onkeyup="sss()" onclick="sss()" name="quantity" placeholder="Quantity" type="number">
+            </div>
+            <button class="btn btn-primary" disabled type="submit">Sell</button>
+        </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</p>
+{% endif %}
+
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus onkeyup="sss()" class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" onkeyup="sss()" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirm password" onkeyup="sss()" placeholder="Confirmation" type="password">
+        </div>
+        <button class="btn btn-primary" disabled type="submit">Register</button>
+    </form>
+    <!-- <script>
+        var x = document.getElementsByClassName("form-control");
+        var y = document.getElementsByClassName("btn btn-primary");
+        function sss() {for(i=0; i<x.length; i++){
+            if(x[i].value === ''){
+                y[0].form[3].disabled = true;
+            }
+            else{
+                y[0].form[3].disabled = false;
+            }
+        }}
+    </script> -->
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <p>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Stock Symbol</th>
+                <th scope="col">Units</th>
+            </tr>
+            </thead>
+            <!-- <tbody>
+                {% for i in range(num) %}
+                <tr>
+                    <td>{{stocks[i]["symbol"]}}</td>
+                    <td>{{stocks[i]["units"]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody> -->
+    <script>
+    var stocks = JSON.parse('{{stocks|safe}}')
+    function generate_table() {
+        // get the reference for the body
+        // creates/refrence a <table> element and a <tbody> element
+        var body = document.getElementsByTagName("table")[0];
+        var tblBody = document.createElement("tbody");
+        
+        // creating all cells
+        for (var i = 0; i < stocks.length; i++) {
+            // creates a table row
+            var row = document.createElement("tr");
+            // Create a <td> element and a text node, make the text
+            // node the contents of the <td>, and put the <td> at
+            // the end of the table row
+            var cell = document.createElement("td");
+            var cellText = document.createTextNode(stocks[i]["symbol"]);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+            var cell = document.createElement("td");
+            var cellText = document.createTextNode(stocks[i]["units"]);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+        
+            // add the row to the end of the table body
+            tblBody.appendChild(row);
+        }
+        
+        // put the <tbody> in the <table>
+        body.appendChild(tblBody);
+        }
+        generate_table();
+    </script>
+        </table>
+    </p>
+{% endblock %}
